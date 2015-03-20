@@ -1,15 +1,16 @@
 'use strict';
 
-var Backbone = require('backbone');
-var $ = require('jquery');
+var Backbone = require('backbone'),
+    $ = require('jquery'),
+    template = require('./templates/ExampleView-tpl.html');
+
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
   initialize: function () {
-    console.log('Initialize the function');
     this.render();
   },
   render: function() {
-    $('article').prepend('<p class="pure-u-1">This stuff works.</p>');
+    $('article').prepend(template({message: 'This is a passed message.'}));
   }
 });
