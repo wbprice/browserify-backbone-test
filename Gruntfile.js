@@ -24,6 +24,11 @@ module.exports = function(grunt) {
           dist: {
             files: {
               'dist/main.js': ['js/main.js']
+            },
+            options: {
+              transform: ['node-underscorify'],
+              debug: true,
+              // external: ['jquery', 'underscore', 'backbone']
             }
           }
         },
