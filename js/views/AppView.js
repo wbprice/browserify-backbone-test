@@ -1,11 +1,10 @@
-var app = app || {};
-
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 var statsTemplate = require('./templates/stats-template-tpl.html');
+var TodoList = require('./../collections/TodoList');
 
-app.Todos = require('./../collections/TodoList');
+var Todos = new TodoList();
 
 // The Application
 // ---------------
@@ -40,25 +39,25 @@ module.exports = Backbone.View.extend({
     this.$footer = this.$('#footer');
     this.$main = this.$('#main');
 
-    this.listenTo(app.Todos, 'add', this.addOne);
-    this.listenTo(app.Todos, 'reset', this.addAll);
+    this.listenTo(Todos, 'add', this.addOne);
+    this.listenTo(Todos, 'reset', this.addAll);
 
     // New
-    this.listenTo(app.Todos, 'change:completed', this.filterOne);
-    this.listenTo(app.Todos,'filter', this.filterAll);
-    this.listenTo(app.Todos, 'all', this.render);
+    this.listenTo(Todos, 'change:completed', this.filterOne);
+    this.listenTo(Todos,'filter', this.filterAll);
+    this.listenTo(Todos, 'all', this.render);
 
-    app.Todos.fetch();
+    Todos.fetch();
   },
 
   // New
   // Re-rendering the App just means refreshing the statistics -- the rest
   // of the app doesn't change.
   render: function() {
-    var completed = app.Todos.completed().length;
-    var remaining = app.Todos.remaining().length;
+    var completed = Todos.completed().length;
+    var remaining = Todos.remaining().length;
 
-    if ( app.Todos.length ) {
+    if ( Todos.length ) {
       this.$main.show();
       this.$footer.show();
 
@@ -82,14 +81,14 @@ module.exports = Backbone.View.extend({
   // Add a single todo item to the list by creating a view for it, and
   // appending its element to the `<ul>`.
   addOne: function( todo ) {
-    var view = new app.TodoView({ model: todo });
+    var view = new TodoView({ model: todo });
     $('#todo-list').append( view.render().el );
   },
 
   // Add all items in the **Todos** collection at once.
   addAll: function() {
     this.$('#todo-list').html('');
-    app.Todos.each(this.addOne, this);
+    Todos.each(this.addOne, this);
   },
 
   // New
@@ -99,7 +98,7 @@ module.exports = Backbone.View.extend({
 
   // New
   filterAll : function () {
-    app.Todos.each(this.filterOne, this);
+    Todos.each(this.filterOne, this);
   },
 
 
@@ -108,7 +107,7 @@ module.exports = Backbone.View.extend({
   newAttributes: function() {
     return {
       title: this.$input.val().trim(),
-      order: app.Todos.nextOrder(),
+      order: Todos.nextOrder(),
       completed: false
     };
   },
@@ -121,14 +120,14 @@ module.exports = Backbone.View.extend({
       return;
     }
 
-    app.Todos.create( this.newAttributes() );
+    Todos.create( this.newAttributes() );
     this.$input.val('');
   },
 
   // New
   // Clear all completed todo items, destroying their models.
   clearCompleted: function() {
-    _.invoke(app.Todos.completed(), 'destroy');
+    _.invoke(Todos.completed(), 'destroy');
     return false;
   },
 
@@ -136,7 +135,7 @@ module.exports = Backbone.View.extend({
   toggleAllComplete: function() {
     var completed = this.allCheckbox.checked;
 
-    app.Todos.each(function( todo ) {
+    Todos.each(function( todo ) {
       todo.save({
         'completed': completed
       });

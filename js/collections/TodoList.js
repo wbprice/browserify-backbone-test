@@ -5,9 +5,7 @@ Backbone.LocalStorage = require("backbone.localstorage");
 
 Backbone.$ = $;
 
-var app = app || {};
-
-app.Todo = require('./../models/Todo.js');
+var Todo = require('./../models/Todo.js');
 
  // Todo Collection
  // ---------------
@@ -17,7 +15,7 @@ app.Todo = require('./../models/Todo.js');
  module.exports = Backbone.Collection.extend({
 
    // Reference to this collection's model.
-   model: app.Todo,
+   model: Todo,
 
    // Save all of the todo items under the `"todos-backbone"` namespace.
    localStorage: new Backbone.LocalStorage('todos-backbone'),
