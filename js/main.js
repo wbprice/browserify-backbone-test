@@ -10,7 +10,6 @@ Backbone.$ = $;
 
 // Create our global collection of **Todos**.
 
-var ENTER_KEY = 13;
 
 $(function() {
 

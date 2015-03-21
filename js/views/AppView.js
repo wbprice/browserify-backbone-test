@@ -2,7 +2,10 @@ var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 var statsTemplate = require('./templates/stats-template-tpl.html');
+var TodoView = require('./templates/item-template-tpl.html');
 var TodoList = require('./../collections/TodoList');
+
+var ENTER_KEY = 13;
 
 var Todos = new TodoList();
 
@@ -68,7 +71,7 @@ module.exports = Backbone.View.extend({
 
       this.$('#filters li a')
         .removeClass('selected')
-        .filter('[href="#/' + ( app.TodoFilter || '' ) + '"]')
+        .filter('[href="#/' + ( TodoFilter || '' ) + '"]')
         .addClass('selected');
     } else {
       this.$main.hide();
