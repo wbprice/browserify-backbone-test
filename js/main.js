@@ -1,13 +1,23 @@
+var app = app || {};
+
 var Backbone = require('Backbone'),
     _ = require('underscore'),
-    $ = require('jquery'),
-    Todo = require('./models/Todo'),
-    TodoList = require('./collections/TodoList');
+    $ = require('jquery');
+
+app.Todo = require('./models/Todo');
+app.TodoList = require('./collections/TodoList');
+app.AppView = require('./views/AppView');
 
 Backbone.$ = $;
 
-var Todos = new TodoList();
+// Create our global collection of **Todos**.
+app.Todos = new app.TodoList();
 
-var AppView = require('./views/ExampleView');
+var ENTER_KEY = 13;
 
-var appView = new AppView();
+$(function() {
+
+
+  new app.AppView();
+
+});
