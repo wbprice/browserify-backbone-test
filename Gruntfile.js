@@ -28,7 +28,7 @@ module.exports = function(grunt) {
             options: {
               transform: ['node-underscorify'],
               debug: true,
-              // external: ['jquery', 'underscore', 'backbone']
+              external: ['$:jquery/dist/jquery.min.js', '_:underscore/underscore.js', 'Backbone:backbone/backbone-min.js']
             }
           }
         },
