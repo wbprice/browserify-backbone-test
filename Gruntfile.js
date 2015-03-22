@@ -1,5 +1,3 @@
-var hbsfy = require('hbsfy');
-
 module.exports = function(grunt) {
 
     grunt.initConfig({
@@ -28,7 +26,7 @@ module.exports = function(grunt) {
               'dist/main.js': ['js/main.js']
             },
             options: {
-              transform: [hbsfy],
+              transform: ['node-underscorify'],
               debug: true,
             }
           }

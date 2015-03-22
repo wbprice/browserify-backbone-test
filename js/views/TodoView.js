@@ -17,7 +17,7 @@ var app = app || {};
 // Todo Item View
 // --------------
 
-// The DOM element for a todo item...u
+// The DOM element fofr a todo item...u
 
 module.exports = Backbone.View.extend({
 
@@ -25,7 +25,7 @@ module.exports = Backbone.View.extend({
   tagName: 'li',
 
   // Cache the template function for a single item.
-  template: _.template( itemTemplate() ),
+  template: itemTemplate,
 
   // The DOM events specific to an item.
   events: {
