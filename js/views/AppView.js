@@ -71,7 +71,7 @@ module.exports = Backbone.View.extend({
 
       this.$('#filters li a')
         .removeClass('selected')
-        .filter('[href="#/' + ( TodoFilter || '' ) + '"]')
+        // .filter('[href="#/' + ( TodoFilter || '' ) + '"]')
         .addClass('selected');
     } else {
       this.$main.hide();
