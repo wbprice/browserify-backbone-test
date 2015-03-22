@@ -26,9 +26,8 @@ module.exports = function(grunt) {
               'dist/main.js': ['js/main.js']
             },
             options: {
-              transform: ['node-underscorify'],
+              transform: ['hbsfy'],
               debug: true,
-              external: ['$:jquery/dist/jquery.min.js', '_:underscore/underscore.js', 'Backbone:backbone/backbone-min.js']
             }
           }
         },

@@ -1,8 +1,8 @@
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
-var statsTemplate = require('./templates/stats-template-tpl.html');
-var TodoView = require('./templates/item-template-tpl.html');
+var statsTemplate = require('./templates/stats-template-tpl.hbs');
+var TodoView = require('./templates/item-template-tpl.hbs');
 var TodoList = require('./../collections/TodoList');
 
 var ENTER_KEY = 13;
@@ -20,10 +20,7 @@ module.exports = Backbone.View.extend({
   el: '#todoapp',
 
   // Our template for the line of statistics at the bottom of the app.
-  statsTemplate: _.template( statsTemplate({
-    completed: 0,
-    remaining: 0
-  }) ),
+  statsTemplate: _.template( statsTemplate() ),
 
   // New
   // Delegated events for creating new items, and clearing completed ones.
@@ -65,7 +62,7 @@ module.exports = Backbone.View.extend({
       this.$footer.show();
 
       this.$footer.html(this.statsTemplate({
-        completed: false,
+        completed: completed,
         remaining: remaining
       }));
 
@@ -84,11 +81,11 @@ module.exports = Backbone.View.extend({
   // Add a single todo item to the list by creating a view for it, and
   // appending its element to the `<ul>`.
   addOne: function( todo ) {
-    // var view = new TodoView({ model: todo });
     var view = new TodoView({
-      completed: todo.completed,
-      title: todo.title
+      completed: todo.get('completed'),
+      title: todo.get('title')
     });
+    debugger;
     $('#todo-list').append( view );
   },
 
@@ -133,7 +130,7 @@ module.exports = Backbone.View.extend({
 
   // New
   // Clear all completed todo items, destroying their models.
-  clearCompleted: function() {
+  clearCompleted: function() {ff
     _.invoke(Todos.completed(), 'destroy');
     return false;
   },
