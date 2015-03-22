@@ -65,7 +65,7 @@ module.exports = Backbone.View.extend({
       this.$footer.show();
 
       this.$footer.html(this.statsTemplate({
-        completed: completed,
+        completed: false,
         remaining: remaining
       }));
 
@@ -84,8 +84,12 @@ module.exports = Backbone.View.extend({
   // Add a single todo item to the list by creating a view for it, and
   // appending its element to the `<ul>`.
   addOne: function( todo ) {
-    var view = new TodoView({ model: todo });
-    $('#todo-list').append( view.render().el );
+    // var view = new TodoView({ model: todo });
+    var view = new TodoView({
+      completed: todo.completed,
+      title: todo.title
+    });
+    $('#todo-list').append( view );
   },
 
   // Add all items in the **Todos** collection at once.

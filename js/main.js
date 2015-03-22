@@ -8,11 +8,16 @@ var Backbone = require('Backbone'),
 
 Backbone.$ = $;
 
+
 // Create our global collection of **Todos**.
 
 
 $(function() {
 
   new AppView();
+
+  var Todos = new TodoList();
+
+  Todos.create({ title: 'My first Todo item'});
 
 });

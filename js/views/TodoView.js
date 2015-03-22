@@ -22,7 +22,10 @@ module.exports = Backbone.View.extend({
   tagName: 'li',
 
   // Cache the template function for a single item.
-  template: _.template( itemTemplate() ),
+  template: _.template( itemTemplate({
+    completed: false,
+    title: 'todo'
+  }) ),
 
   // The DOM events specific to an item.
   events: {
@@ -40,6 +43,7 @@ module.exports = Backbone.View.extend({
 
   // Re-renders the titles of the todo item.
   render: function() {
+    debugger;
     this.$el.html( this.template( this.model.attributes ) );
     this.$input = this.$('.edit');
     return this;
