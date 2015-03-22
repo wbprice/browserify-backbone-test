@@ -18,6 +18,4 @@ $(function() {
 
   var Todos = new TodoList();
 
-  Todos.create({ title: 'My first Todo item'});
-
 });

@@ -46,3 +46,4 @@ var Todo = require('./../models/Todo.js');
      return todo.get('order');
    }
  });
+ 

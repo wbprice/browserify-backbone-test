@@ -4,6 +4,7 @@ var $ = require('jquery');
 var statsTemplate = require('./templates/stats-template-tpl.html');
 var TodoView = require('./templates/item-template-tpl.html');
 var TodoList = require('./../collections/TodoList');
+Backbone.$ = $;
 
 var ENTER_KEY = 13;
 
