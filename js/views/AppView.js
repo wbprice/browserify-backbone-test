@@ -4,11 +4,34 @@ var $ = require('jquery');
 var statsTemplate = require('./templates/stats-template-tpl.html');
 var TodoView = require('./TodoView');
 var TodoList = require('./../collections/TodoList');
+var Workspace;
+
 Backbone.$ = $;
 
 var ENTER_KEY = 13;
 
 var Todos = new TodoList();
+
+Workspace = Backbone.Router.extend({
+  routes:{
+    '*filter': 'setFilter'
+  },
+
+  setFilter: function( param ) {
+    // Set the current filter to be used
+    if (param) {
+      param = param.trim();
+    }
+    TodoFilter = param || '';
+
+    // Trigger a collection filter event, causing hiding/unhiding
+    // of Todo view items
+    Todos.trigger('filter');
+  }
+});
+
+TodoRouter = new Workspace();
+Backbone.history.start();
 
 // The Application
 // ---------------
@@ -69,7 +92,7 @@ module.exports = Backbone.View.extend({
 
       this.$('#filters li a')
         .removeClass('selected')
-        // .filter('[href="#/' + ( TodoFilter || '' ) + '"]')
+        .filter('[href="#/' + ( TodoFilter || '' ) + '"]')
         .addClass('selected');
     } else {
       this.$main.hide();
