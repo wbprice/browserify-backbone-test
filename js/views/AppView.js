@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 var statsTemplate = require('./templates/stats-template-tpl.html');
-var TodoView = require('./templates/item-template-tpl.html');
+var TodoView = require('./TodoView');
 var TodoList = require('./../collections/TodoList');
 Backbone.$ = $;
 
@@ -82,11 +82,8 @@ module.exports = Backbone.View.extend({
   // Add a single todo item to the list by creating a view for it, and
   // appending its element to the `<ul>`.
   addOne: function( todo ) {
-    var view = TodoView({
-      completed: todo.get('completed'),
-      title: todo.get('title')
-    });
-    $('#todo-list').append( view );
+    var view = new TodoView({ model: todo });
+    $('#todo-list').append( view.render().el );
   },
 
   // Add all items in the **Todos** collection at once.
