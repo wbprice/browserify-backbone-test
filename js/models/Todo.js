@@ -1,7 +1,4 @@
 var Backbone = require('backbone');
-var $ = require('jquery');
-
-var app = app || {};
 
 // Todo Model
 // ----------
