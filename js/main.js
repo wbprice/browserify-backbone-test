@@ -1,5 +1,5 @@
 
-var Backbone = require('Backbone'),
+var Backbone = require('backbone'),
     _ = require('underscore'),
     $ = require('jquery');
     Todo = require('./models/Todo'),
