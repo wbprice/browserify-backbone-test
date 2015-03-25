@@ -3,8 +3,6 @@ var _ = require('underscore');
 var $ = require('jquery');
 Backbone.LocalStorage = require("backbone.localstorage");
 
-Backbone.$ = $;
-
 var Todo = require('./../models/Todo.js');
 
  // Todo Collection
@@ -46,4 +44,3 @@ var Todo = require('./../models/Todo.js');
      return todo.get('order');
    }
  });
- 
