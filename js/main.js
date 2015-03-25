@@ -1,4 +1,3 @@
-
 var Backbone = require('Backbone'),
     _ = require('underscore'),
     $ = require('jquery');
@@ -6,16 +5,11 @@ var Backbone = require('Backbone'),
     TodoList = require('./collections/TodoList'),
     AppView = require('./views/AppView');
 
-Backbone.$ = $;
-
-
-// Create our global collection of **Todos**.
-
-
 $(function() {
 
   new AppView();
 
+// Create our global collection of **Todos**.
   var Todos = new TodoList();
 
 });
