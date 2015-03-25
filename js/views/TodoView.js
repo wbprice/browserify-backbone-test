@@ -7,16 +7,6 @@ var Backbone = require('backbone'),
     itemTemplate = require('./templates/item-template-tpl.html');
     Backbone.$ = $;
 
-// The DOM element for a todo item...
-// js/views/todos.js
-
-// js/views/todos.js
-
-var app = app || {};
-
-// Todo Item View
-// --------------
-
 // The DOM element fofr a todo item...u
 
 module.exports = Backbone.View.extend({
@@ -65,8 +55,8 @@ module.exports = Backbone.View.extend({
   isHidden : function () {
     var isCompleted = this.model.get('completed');
     return ( // hidden cases only
-      (!isCompleted && app.TodoFilter === 'completed')
-      || (isCompleted && app.TodoFilter === 'active')
+      (!isCompleted && TodoFilter === 'completed')
+      || (isCompleted && TodoFilter === 'active')
     );
   },
 
